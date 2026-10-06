@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: great-cpu-bake-off
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: great-cpu-bake-off }
+  template:
+    metadata:
+      labels: { app: great-cpu-bake-off }
+    spec:
+      containers:
+        - name: frontend
+          image: image-registry.openshift-image-registry.svc:5000/cost-aware-inference-demo/great-cpu-bake-off@sha256:4d62d0a5c8dab3752090c054aa4c89b349eda789aedb7f7221eb967c1213dc1b
+          ports:
+            - { name: http, containerPort: 8080 }
+          readinessProbe:
+            httpGet: { path: /, port: http }
+          livenessProbe:
+            httpGet: { path: /, port: http }
+            initialDelaySeconds: 10
+          resources:
+            requests: { cpu: 25m, memory: 32Mi }
+            limits: { cpu: 250m, memory: 128Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: great-cpu-bake-off
+spec:
+  selector: { app: great-cpu-bake-off }
+  ports:
+    - { name: http, port: 8080, targetPort: http }
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: great-cpu-bake-off
+  annotations:
+    haproxy.router.openshift.io/timeout: 5m
+spec:
+  to: { kind: Service, name: great-cpu-bake-off }
+  port: { targetPort: http }
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

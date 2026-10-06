@@ -1,0 +1,20 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: great-cpu-bake-off
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: great-cpu-bake-off
+spec:
+  source:
+    type: Binary
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Containerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: great-cpu-bake-off:latest

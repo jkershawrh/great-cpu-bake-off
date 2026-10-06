@@ -1,0 +1,72 @@
+version: 1
+blueprint: demo-blueprint.yaml
+presentation:
+  title: The Great CPU Bake Off
+  audience: Enterprise AI leaders, architects, application owners, and sales audiences
+  desired_decision: Approve a workload-specific heterogeneous inference proof on Red Hat AI
+  duration_minutes: 7
+  core_tension: The fastest appliance is not automatically the right place for every step in a completed task.
+  cta: Bring one workload, one eval set, and your real cost assumptions.
+source_material:
+  mode: repository
+  items:
+    - ../cost-aware-inference-demo
+    - demo-blueprint.yaml
+  consequential_assumptions:
+    - Culinary framing is interpretive and never replaces technical labels or evidence.
+    - The public title requires brand and trademark review before campaign use.
+    - Hardware providers appear only when deployed evidence identifies them.
+architecture:
+  actors: [Presenter, Workload owner]
+  boundaries: [OpenShift project, OpenAI-compatible API, named-case acceptance threshold]
+  critical_flows: [competition-flow]
+  omitted_from_main_story: [build pipeline, image registry, unrelated platform services, supplier list prices]
+beats:
+  - {beat: ordinary-world, claim: One completed agent task is a recipe made from several inference steps.}
+  - {beat: stakes, claim: Assigning every step to premium compute can increase cost without improving acceptance.}
+  - {beat: root-cause, claim: Tokens per second does not measure the cost of an accepted completed task.}
+  - {beat: reframe, claim: Judge the completed recipe then place each step on the least-cost tier that passes.}
+  - {beat: system-reveal, claim: Red Hat keeps one application contract while policy selects CPU accelerator or heterogeneous placement.}
+  - {beat: live-proof, claim: One named case runs under all three policies with live prompts outputs routes latency evidence and cost assumptions.}
+  - {beat: trials, claim: Quality qualifies the recipe; latency and modeled cost break the tie.}
+  - {beat: transformation, claim: The platform decision becomes an inspectable workload recipe rather than a hardware guess.}
+  - {beat: next-journey, claim: Qualify the recipe with the customer workload and target environment.}
+evidence:
+  - id: live-competition
+    claim: Three policies returned sourced outputs routing latency scores and execution-cost proxies in this browser session.
+    classification: live-measurement
+    source: POST /proof/api/v1/bakeoff
+    owner: Demo runtime
+    last_verified: null
+    treatment: Show only after a live response; otherwise label checked-in data REHEARSAL.
+  - id: judging-rule
+    claim: The score is a deterministic evaluation for the selected named case.
+    classification: verified-fact
+    source: services/proof-api/evaluation.py
+    owner: Workload owner
+    last_verified: "2026-10-02"
+    treatment: Keep the rubric and scope beside the score.
+  - id: cost-rule
+    claim: The cost comparison applies visible hourly assumptions to measured inference time.
+    classification: interpretation
+    source: services/proof-api/evaluation.py
+    owner: Workload owner
+    last_verified: "2026-10-02"
+    treatment: Call it an execution-cost proxy and display exclusions.
+live_systems:
+  - id: proof-api
+    endpoint: /proof/api/v1/bakeoff
+    timeout_ms: 180000
+    source_states: [LIVE, REHEARSAL, OFFLINE]
+  - id: qualification-api
+    endpoint: /proof/api/v1/qualification
+    timeout_ms: 900000
+    source_states: [LIVE]
+journey:
+  presentation: Seven-minute menu from order through verdict
+  live_demonstration: Run three recipes and inspect prompts outputs routes and evidence
+  guided_demo: Trace OpenShift routing endpoints MCP evidence and deterministic judging
+  hands_on_lab: Add a case tune placement qualify repeated runs and export a recipe card
+open_questions:
+  - Final public campaign name after brand and trademark review
+  - Approved calligraphic font with local redistribution rights
